@@ -3,6 +3,7 @@ const express = require('express')
 const https = require('https');
 const { response } = require('express');
 const { searchImages } = require('pixabay-api');
+const axios = require('axios')
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -33,7 +34,19 @@ app.listen(process.env.PORT, function () {
     console.log(`Example app listening on port ${port}!`)
 })
 
-app.get('/search-image', function (req, res) {
+app.get('/images', function (req, res) {
     searchImages(process.env.PIXABAY_KEY, 'paris')
     .then((r) => res.send(r));
+})
+
+
+app.get('/location', function (req, res) {
+    const city = 'lubumbashi'
+    axios({
+        method: 'get',
+        url: encodeURI(`http://api.geonames.org/searchJSON?formatted=true&q=${city}&maxRows=1&lang=en&username=${process.env.USER_NAME}&style=full`),
+    })
+    .then((r) => {
+        res.send(r.data)
+    });
 })
