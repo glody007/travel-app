@@ -50,3 +50,14 @@ app.get('/location', function (req, res) {
         res.send(r.data)
     });
 })
+
+app.get('/forecast', function (req, res) {
+    const city = 'lubumbashi'
+    axios({
+        method: 'get',
+        url: encodeURI(`https://api.weatherbit.io/v2.0/forecast/hourly?city=${city}&key=${process.env.WEATHERBIT_API}&&hours=48`),
+    })
+    .then((r) => {
+        res.send(r.data)
+    });
+})
