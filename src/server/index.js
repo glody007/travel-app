@@ -1,6 +1,8 @@
 var path = require('path')
 const express = require('express')
+const https = require('https');
 const { response } = require('express');
+const { searchImages } = require('pixabay-api');
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -29,4 +31,9 @@ const port = process.env.PORT || 8000
 // designates what port the app will listen to for incoming requests
 app.listen(process.env.PORT, function () {
     console.log(`Example app listening on port ${port}!`)
+})
+
+app.get('/search-image', function (req, res) {
+    searchImages(process.env.PIXABAY_KEY, 'paris')
+    .then((r) => res.send(r));
 })
