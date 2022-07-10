@@ -34,28 +34,26 @@ app.listen(process.env.PORT, function () {
     console.log(`Example app listening on port ${port}!`)
 })
 
-app.get('/images', function (req, res) {
-    searchImages(process.env.PIXABAY_KEY, 'paris')
+app.post('/images', function (req, res) {
+    searchImages(process.env.PIXABAY_KEY, req.body.name)
     .then((r) => res.send(r));
 })
 
 
-app.get('/location', function (req, res) {
-    const city = 'lubumbashi'
+app.post('/location', function (req, res) {
     axios({
         method: 'get',
-        url: encodeURI(`http://api.geonames.org/searchJSON?formatted=true&q=${city}&maxRows=1&lang=en&username=${process.env.USER_NAME}&style=full`),
+        url: encodeURI(`http://api.geonames.org/searchJSON?formatted=true&q=${req.body.city}&maxRows=1&lang=en&username=${process.env.USER_NAME}&style=full`),
     })
     .then((r) => {
         res.send(r.data)
     });
 })
 
-app.get('/forecast', function (req, res) {
-    const city = 'lubumbashi'
+app.post('/forecast', function (req, res) {
     axios({
         method: 'get',
-        url: encodeURI(`https://api.weatherbit.io/v2.0/forecast/hourly?city=${city}&key=${process.env.WEATHERBIT_API}&&hours=48`),
+        url: encodeURI(`https://api.weatherbit.io/v2.0/forecast/hourly?city=${req.body.city}&key=${process.env.WEATHERBIT_API}&&hours=48`),
     })
     .then((r) => {
         res.send(r.data)
