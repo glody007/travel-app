@@ -21,8 +21,24 @@ form {
     }
 }
 
+.picture {
+    background-image: url("https://cdn.pixabay.com/photo/2016/10/30/20/08/eiffel-tower-1784212_1280.jpg");
+    background-size: cover;
+    height: 200px;
+    margin-bottom: $sm;
+}
+
 @media(min-width:780px) {
     form {
         display: flex;
+    }
+    #pictures {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: $sm;
+    }
+    .picture {
+        width: 250px;
     }
 }
