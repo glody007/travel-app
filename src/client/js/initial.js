@@ -14,17 +14,21 @@ const addImages = (images) => {
 
 /**
  * Get pictures of the capitals in list
+ * add capital name to page
  * and show those pictures
  */
-const getCapitalsImages = () => {
+const getCapitalImages = () => {
     // List of some capitals
     const capitals = ["Nairobi", "Paris", "Bruxelle", "Washington"];
     // Get random index
     const random = Math.floor(Math.random() * capitals.length);
-    fetchImages(capitals[random])
+    const capitalName = capitals[random]
+    const capital = document.getElementById('capital')
+    capital.innerHTML = capitalName
+    fetchImages(capitalName)
     .then((data) => {
         addImages(data.hits)
     })
 }
 
-export { getCapitalsImages }
+export { getCapitalImages }

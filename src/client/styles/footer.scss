@@ -1,18 +1,35 @@
 @import 'base';
 
 footer {
+    padding: $xl $md 0 $md;
+    background-color: $primary-color;
+}
+
+.footer-content {
     display: flex;
     gap: $md;
-    padding: $md;
-    background-color: $primary-color;
     div {
         display: flex;
         flex-direction: column;
+        gap: $sm;
         a {
             font-family: $font-stack;
             font-size: $base;
             font-weight: lighter;
             cursor: pointer;
         }
+    }
+}
+
+#copyright {
+    display: flex;
+    padding: $sm;
+    justify-content: center;
+    p {
+        font-family: $font-stack;
+        font-size: $base;
+        padding: $md 0 $md 0;
+        font-weight: lighter;
+        color: $gray;
     }
 }

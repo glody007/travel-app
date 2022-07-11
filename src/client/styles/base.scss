@@ -6,6 +6,7 @@ $sea-green-crayola-2: #00efcfff;
 $orchid: #ee74dbff;
 $primary-color: $flickr-pink;
 $secondary-color: $ultramarine-blue;
+$gray: #444;
 
 /* SIZES */
 $xs: 4px;
@@ -37,6 +38,13 @@ h2 {
     font-weight: lighter;
     font-size: $md;
     padding: $sm 0 $sm 0px;
+}
+
+.section-title {
+    font-family: $font-stack;
+    font-weight: lighter;
+    font-size: $md;
+    padding: $xs 0 $xs 0px;
 }
 
 p {
