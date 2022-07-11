@@ -2,31 +2,55 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Test</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Go Travel</title>
     </head>
 
     <body>
 
         <header>
             <div class="item">
-                Logo
+                <a>Go Travel</a>
             </div>
             <div class="item">
-                navigation
+                <button>Register</button>
+                <button>Login</button>
             </div>
         </header>
 
         <main>
-            <section>
+            <section id="input-section">
+                <h1>Find your next destination</h1>
+                <p class="sub-title">Enter the location you are traveling to and the date you are leaving. If the trip is within a week, you will get the current weather forecast</p>
                 <form class="" onsubmit="return handleSubmit(event)">
-                    <input id="city" name="input" value="" onblur="onBlur()" placeholder="Enter city name">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
+                    <input id="city" name="input" value="" placeholder="Where are you going">
+                    <input id="date" name="date" value="" placeholder="Check-in" onfocus="(this.type='date')" onblur="(this.type='text')">
+                    <input id="submit" type="submit" name="" value="Search" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
                 </form>
+            </section>
+            <section>
+
+            </section id="results-section">
             </section>
         </main>
 
         <footer>
-            <p>This is a footer</p>
+            <div>
+                <a>Countries</a>
+                <a>Regions</a>
+                <a>Cities</a>
+                <a>Districs</a>
+                <a>Airports</a>
+                <a>Hotels</a>
+            </div>
+            <div> 
+                <a>Homes</a>
+                <a>Apartments</a>
+                <a>Resorts</a>
+                <a>Villas</a>
+                <a>Hostels</a>
+                <a>Guest houses</a>  
+            </div>
         </footer>
         <script>
             // Check that service workers are supported

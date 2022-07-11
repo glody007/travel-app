@@ -1,0 +1,60 @@
+/* COLORS */
+$flickr-pink: #f0307fff;
+$ultramarine-blue: #4f5ff2ff;
+$sea-green-crayola: #2be8c0ff;
+$sea-green-crayola-2: #00efcfff;
+$orchid: #ee74dbff;
+$primary-color: $flickr-pink;
+$secondary-color: $ultramarine-blue;
+
+/* SIZES */
+$xs: 4px;
+$sm: 8px;
+$base: 16px;
+$md: 24px;
+$lg: 40px;
+$xl: 64px;
+
+/* FONTS */
+$font-stack: Helvetica, sans-serif;
+
+h1 {
+    font-family: $font-stack;
+    font-weight: bold;
+    font-size: $xl;
+    letter-spacing: -2%;
+}
+
+h2 {
+    font-family: $font-stack;
+    font-weight: bold;
+    font-size: $lg;
+    letter-spacing: -2%;
+}
+
+.sub-title {
+    font-family: $font-stack;
+    font-weight: lighter;
+    font-size: $md;
+    padding: $sm 0 $sm 0px;
+}
+
+p {
+    font-family: $font-stack;
+    font-weight: $base;
+    font-size: $md;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 2;
+}
+
+section {
+    padding: $md;
+}

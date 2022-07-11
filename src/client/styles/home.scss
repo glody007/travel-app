@@ -1,0 +1,28 @@
+@import 'base';
+
+#input-section {
+    background-color: $primary-color;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: 3;
+    input {
+        flex: 1;
+        padding: $base;
+        font-size: medium;
+        font-weight: bold;
+        border: $xs solid $sea-green-crayola;
+    }
+    #submit {
+        background-color: $secondary-color;
+        color: white;
+    }
+}
+
+@media(min-width:780px) {
+    form {
+        display: flex;
+    }
+}

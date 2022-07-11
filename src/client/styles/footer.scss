@@ -1,0 +1,18 @@
+@import 'base';
+
+footer {
+    display: flex;
+    gap: $md;
+    padding: $md;
+    background-color: $primary-color;
+    div {
+        display: flex;
+        flex-direction: column;
+        a {
+            font-family: $font-stack;
+            font-size: $base;
+            font-weight: lighter;
+            cursor: pointer;
+        }
+    }
+}

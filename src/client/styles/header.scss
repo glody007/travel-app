@@ -1,0 +1,20 @@
+@import 'base';
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: $md;
+    background-color: $primary-color;
+    a {
+        font-family: $font-stack;
+        font-size: $md;
+        font-weight: bold;
+    }
+    button {
+        padding: $sm;
+        background-color: white;
+        color: $secondary-color;
+        border-style: solid;
+        border-color: $primary-color;
+    }
+}
