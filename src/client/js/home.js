@@ -88,7 +88,6 @@ class Home {
     }
 
     getLocationForcast() {
-        this.forcasts.innerText = ''
         if(this.isTripWithinSixteenDays()) {
             fetchForcast(this.city.value)
             .then((r) => {
@@ -118,6 +117,13 @@ class Home {
                 this.forcasts.appendChild(fragment)    
             })
         }
+    }
+
+    /**
+     * Remove all forcasts
+     */
+     removeForcasts() {
+        this.forcasts.innerText = ''
     }
     
     /**
@@ -188,17 +194,22 @@ class Home {
             this.setLocationName(this.city.value)
             this.setTripLenght()
             this.removeImages()
+            this.removeForcasts()
             this.getLocations()
             .then((location) => {
                 if(location.totalResultsCount > 0) {
                     this.country = location.geonames[0].countryName
                     this.getLocationForcast()
+                    return true
                 } else {
-                    // TO DO: Show error
+                    this.location.innerHTML = `${this.city.value} is not a valide Location`
+                    return false
                 }
             })
-            .then(() => {
-                this.getLocationImages()
+            .then((isLocation) => {
+                if(isLocation) {
+                    this.getLocationImages()
+                }
             })
         } else {
             this.alert()
