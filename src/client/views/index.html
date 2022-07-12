@@ -24,7 +24,8 @@
                 <p class="sub-title">Enter the location you are traveling to and the date you are leaving. If the trip is within a week, you will get the current weather forecast</p>
                 <form class="" onsubmit="return handleSubmit(event)">
                     <input id="city" name="input" value="" placeholder="Where are you going">
-                    <input id="date" name="date" value="" placeholder="Check-in" onfocus="(this.type='date')" onblur="(this.type='text')">
+                    <input id="start" name="start" value="" placeholder="Start date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                    <input id="end" name="end" value="" placeholder="End date" onfocus="(this.type='date')" onblur="(this.type='text')">
                     <input id="submit" type="submit" name="" value="Search" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
                 </form>
             </section>
