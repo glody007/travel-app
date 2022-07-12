@@ -1,4 +1,5 @@
 import { fetchImages, fetchLocations, fetchForcast } from "./api"
+import { areAllFieldsFilled } from "./validation";
 
 class Home {
     constructor() {
@@ -145,8 +146,7 @@ class Home {
      * Check if all fields are filled 
      */
     areAllFieldsFilled() {
-        if(this.city.value && this.start.value && this.end.value) return true
-        return false
+        return areAllFieldsFilled(this.city.value, this.start.value, this.end.value)
     } 
 
     /**
