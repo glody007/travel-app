@@ -20,6 +20,18 @@ class Home {
         this.getCapitalImages()
     }
 
+    /**
+     * Set location name
+     * @param {String} locationName 
+     */
+    setLocationName(locationName) {
+        this.location.innerText = locationName
+    }
+
+    /**
+     * Add list of images to page
+     * @param {List} images 
+     */
     addImages(images) {
         const fragment = document.createDocumentFragment()
         for(const image of images) {
@@ -29,6 +41,13 @@ class Home {
             fragment.appendChild(element)
         }
         this.pictures.appendChild(fragment)
+    }
+
+    /**
+     * Remove all location's images
+     */
+    removeImages() {
+        this.pictures.innerText = ''
     }
     
     /**
@@ -40,7 +59,7 @@ class Home {
         // Get random index
         const random = Math.floor(Math.random() * this.capitals.length);
         const capitalName = this.capitals[random]
-        this.location.innerHTML = capitalName
+        this.setLocationName(capitalName)
         fetchImages(capitalName)
         .then((data) => {
             this.addImages(data.hits)
@@ -61,8 +80,9 @@ class Home {
         })
     }
     
+
     getLocationImages() {
-        fetchImages(city)
+        fetchImages(this.city)
         .then((data) => {
             getLocationForcast(city)
         })
@@ -72,7 +92,7 @@ class Home {
      * Check if all fields are filled 
      */
     areAllFieldsFilled() {
-        if(this.city && this.start && this.end) return true
+        if(this.city.value && this.start.value && this.end.value) return true
         return false
     } 
 
@@ -83,7 +103,13 @@ class Home {
      * you will get the current weather forecast
      */
     search() {
-        this.getLocationForcast()
+        if(this.areAllFieldsFilled()) {
+            this.setLocationName(this.city.value)
+            this.removeImages()
+            this.getLocationForcast()
+        } else {
+            alert('All fields must be filled')
+        }
     }
 }
 
