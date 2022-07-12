@@ -6,6 +6,7 @@ class Home {
         this.capitals = ["Nairobi", "Paris", "Bruxelle", "Washington"];
         // Elements from document
         this.location = document.getElementById('location')
+        this.tripLenght = document.getElementById('trip-length')
         this.city = document.getElementById('city')
         this.start = document.getElementById('start')
         this.end = document.getElementById('end')
@@ -27,6 +28,17 @@ class Home {
      */
     setLocationName(locationName) {
         this.location.innerText = locationName
+    }
+
+    tripDays() {
+        // Delta in milliseconds
+        const delta = new Date(this.end.value) - new Date(this.start.value)
+        // Convert milliseconds to days
+        return Math.ceil(delta / (1000 * 3600 * 24))
+    }
+
+    setTripLenght() {
+        this.tripLenght.innerHTML = `Your trip will last ${this.tripDays()} day(s)`
     }
 
     /**
@@ -116,6 +128,7 @@ class Home {
     search = () => {
         if(this.areAllFieldsFilled() && this.isStartDateInTheFutureAndBeforeEndDate()) {
             this.setLocationName(this.city.value)
+            this.setTripLenght()
             this.removeImages()
             this.getLocations()
             .then((location) => {
