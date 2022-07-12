@@ -9,12 +9,18 @@ header {
         font-family: $font-stack;
         font-size: $md;
         font-weight: bold;
+        cursor: pointer;
+        &:hover {
+            color: $gray;
+        }
     }
     button {
         padding: $sm;
         background-color: white;
         color: $secondary-color;
-        border-style: solid;
-        border-color: $primary-color;
+        border: $xs solid $primary-color;
+        &:hover {
+            border: $xs solid $secondary-color;
+        }
     }
 }

@@ -17,6 +17,9 @@ footer {
             font-size: $base;
             font-weight: lighter;
             cursor: pointer;
+            &:hover {
+                color: $gray;
+            }
         }
     }
 }

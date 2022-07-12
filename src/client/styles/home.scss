@@ -15,6 +15,9 @@ form {
         font-size: medium;
         font-weight: bold;
         border: $xs solid $sea-green-crayola;
+        &:hover {
+            border: $xs solid $secondary-color;
+        }
     }
     #submit {
         background-color: $secondary-color;
