@@ -11,6 +11,7 @@ class Home {
         this.end = document.getElementById('end')
         this.pictures = document.getElementById('pictures')
         this.submitButton = document.getElementById('submit')
+        this.country = ''
     }
 
     /**
@@ -66,26 +67,27 @@ class Home {
         })
     }
 
-    getLocations() {
-        fetchLocations(this.city)
-        .then((data) => {
-            console.log(data)
-        })
+    getLocations = async () => {
+        return await fetchLocations(this.city.value)  
     }
 
-    getLocationForcast() {
-        fetchForcast(this.city)
-        .then((data) => {
-            console.log(data)
-        })
+    getLocationForcast = async () => {
+        return await fetchForcast(this.city.value)
     }
     
-
-    getLocationImages() {
-        fetchImages(this.city)
-        .then((data) => {
-            getLocationForcast(city)
-        })
+    /**
+     * Get images of city if there is not image
+     * Get images of country 
+     * then add those images to page
+     */
+    getLocationImages = async () => {
+        const data = await fetchImages(this.city.value)
+        if(data.hits.length > 0) {
+            this.addImages(data.hits)
+        } else {
+            const data = await fetchImages(this.country)
+            this.addImages(data.hits)
+        }
     }
 
     /**
@@ -102,11 +104,22 @@ class Home {
      * If the trip is within a week, 
      * you will get the current weather forecast
      */
-    search() {
+    search = () => {
         if(this.areAllFieldsFilled()) {
             this.setLocationName(this.city.value)
             this.removeImages()
-            this.getLocationForcast()
+            this.getLocations()
+            .then((location) => {
+                if(location.totalResultsCount > 0) {
+                    this.country = location.geonames[0].countryName
+                    this.getLocationForcast()
+                } else {
+                    // TO DO: Show error
+                }
+            })
+            .then(() => {
+                this.getLocationImages()
+            })
         } else {
             alert('All fields must be filled')
         }
