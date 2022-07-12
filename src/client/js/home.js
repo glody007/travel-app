@@ -166,6 +166,18 @@ class Home {
     }
 
     /**
+     * Show alert for not filled fields or for wrong range
+     */
+    alert() {
+        if(this.areAllFieldsFilled()) {
+            alert('The Start date must be in the future and before the End date')
+        }
+        else {
+            alert('All fields must be filled')
+        }
+    }
+
+    /**
      * Search for location of your trip
      * Get images of location and
      * If the trip is within a week, 
@@ -189,12 +201,7 @@ class Home {
                 this.getLocationImages()
             })
         } else {
-            if(this.areAllFieldsFilled()) {
-                alert('The Start date must be in the future and before the End date')
-            }
-            else {
-                alert('All fields must be filled')
-            }
+            this.alert()
         }
     }
 }
