@@ -53,7 +53,7 @@ app.post('/location', function (req, res) {
 app.post('/forecast', function (req, res) {
     axios({
         method: 'get',
-        url: encodeURI(`https://api.weatherbit.io/v2.0/forecast/hourly?city=${req.body.city}&key=${process.env.WEATHERBIT_API}&&hours=48`),
+        url: encodeURI(`http://api.weatherbit.io/v2.0/forecast/daily?city=${req.body.city}&key=${process.env.WEATHERBIT_API}&&hours=48`),
     })
     .then((r) => {
         res.send(r.data)

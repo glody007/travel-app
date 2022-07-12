@@ -11,6 +11,8 @@ class Home {
         this.start = document.getElementById('start')
         this.end = document.getElementById('end')
         this.pictures = document.getElementById('pictures')
+        this.forecastTitle = document.getElementById('forcast-title')
+        this.forcasts = document.getElementById('forcasts')
         this.submitButton = document.getElementById('submit')
         this.country = ''
     }
@@ -19,7 +21,7 @@ class Home {
      * Initialize the page with initials datas
      */
     initializePage() {
-        this.getCapitalImages()
+        this.getCapitalDatas()
     }
 
     /**
@@ -64,11 +66,11 @@ class Home {
     }
     
     /**
-     * Get pictures of the capitals in list
-     * add capital name to page
+     * Get pictures and forecasts of random capital in list
+     * add capital name and forecasts to page
      * and show those pictures
      */
-    getCapitalImages() {
+    getCapitalDatas() {
         // Get random index
         const random = Math.floor(Math.random() * this.capitals.length);
         const capitalName = this.capitals[random]
@@ -77,14 +79,45 @@ class Home {
         .then((data) => {
             this.addImages(data.hits)
         })
+        this.city.value = capitalName
+        this.getLocationForcast()
     }
 
     getLocations = async () => {
         return await fetchLocations(this.city.value)  
     }
 
-    getLocationForcast = async () => {
-        return await fetchForcast(this.city.value)
+    getLocationForcast() {
+        this.forcasts.innerText = ''
+        if(this.isTripWithinSixteenDays()) {
+            fetchForcast(this.city.value)
+            .then((r) => {
+                const dataList = r.data
+                const fragment = document.createDocumentFragment()
+                for(const data of dataList) {
+                    const forcast = document.createElement('div')
+                    forcast.classList.add('forcast')
+                    // Create icon and add it to forcast
+                    const icon = document.createElement('div')
+                    icon.style.backgroundImage = `url( https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png)`
+                    icon.classList.add('icon')
+                    forcast.appendChild(icon)
+                    // Create description and add it to forcast
+                    const description = document.createElement('p')
+                    description.innerHTML = data.weather.description
+                    description.classList.add('description')
+                    forcast.appendChild(description)
+                    // Create description and add it to forcast
+                    const date = document.createElement('p')
+                    date.innerHTML = data.datetime
+                    date.classList.add('date')
+                    forcast.appendChild(date)
+                    // Add forcast to fragment
+                    fragment.appendChild(forcast)
+                }
+                this.forcasts.appendChild(fragment)    
+            })
+        }
     }
     
     /**
@@ -113,11 +146,24 @@ class Home {
     /**
      * Check if start date is in the future and is before end date 
      */
-     isStartDateInTheFutureAndBeforeEndDate() {
+    isStartDateInTheFutureAndBeforeEndDate() {
        if(new Date(this.start.value) < new Date()) { return false }
        if(new Date(this.start.value) < new Date(this.end.value)) { return true }
        return false
     } 
+
+    /**
+     * Check if trip is within a week 
+     * return true also if start is empty
+     */
+    isTripWithinSixteenDays() {
+        if(!this.start.value) return true
+        const date = new Date()
+        // Set date 16 days later
+        date.setDate(date.getDate() + 16)
+        if(new Date(this.start.value) < date) { return true }
+        return false
+    }
 
     /**
      * Search for location of your trip

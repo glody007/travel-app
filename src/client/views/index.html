@@ -21,7 +21,7 @@
         <main>
             <section id="input-section">
                 <h1>Find your next destination</h1>
-                <p class="sub-title">Enter the location you are traveling to and the date you are leaving. If the trip is within a week, you will get the current weather forecast</p>
+                <p class="sub-title">Enter the location you are traveling to and the date you are leaving. If the trip is within a 16 Days, you will get weather forecast</p>
                 <form class="" onsubmit="return handleSubmit(event)">
                     <input id="city" name="input" value="" placeholder="Where are you going">
                     <input id="start" name="start" value="" placeholder="Start date" onfocus="(this.type='date')" onblur="(this.type='text')">
@@ -32,6 +32,11 @@
 
             <section>
                 <p id="trip-length" class="section-title"></p>
+            </section>
+
+            <section>
+                <p id="forcast-title" class="section-title">Forecasts</p>
+                <div id="forcasts"></div>
             </section>
             
             <section>
