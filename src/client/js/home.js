@@ -99,13 +99,22 @@ class Home {
     } 
 
     /**
+     * Check if start date is in the future and is before end date 
+     */
+     isStartDateInTheFutureAndBeforeEndDate() {
+       if(new Date(this.start.value) < new Date()) { return false }
+       if(new Date(this.start.value) < new Date(this.end.value)) { return true }
+       return false
+    } 
+
+    /**
      * Search for location of your trip
      * Get images of location and
      * If the trip is within a week, 
      * you will get the current weather forecast
      */
     search = () => {
-        if(this.areAllFieldsFilled()) {
+        if(this.areAllFieldsFilled() && this.isStartDateInTheFutureAndBeforeEndDate()) {
             this.setLocationName(this.city.value)
             this.removeImages()
             this.getLocations()
@@ -121,7 +130,12 @@ class Home {
                 this.getLocationImages()
             })
         } else {
-            alert('All fields must be filled')
+            if(this.areAllFieldsFilled()) {
+                alert('The Start date must be in the future and before the End date')
+            }
+            else {
+                alert('All fields must be filled')
+            }
         }
     }
 }
