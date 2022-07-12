@@ -1,4 +1,3 @@
-import { fetchImages, fetchLocations, fetchForcast } from "./api"
 import { Home } from "./home"
 
 const home = new Home()
