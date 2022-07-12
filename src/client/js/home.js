@@ -1,15 +1,16 @@
-import { fetchImages } from "./api"
+import { fetchImages, fetchLocations, fetchForcast } from "./api"
 
 class Home {
     constructor() {
         // List of some capitals
         this.capitals = ["Nairobi", "Paris", "Bruxelle", "Washington"];
         // Elements from document
-        this.capital = document.getElementById('capital')
+        this.location = document.getElementById('location')
         this.city = document.getElementById('city')
         this.start = document.getElementById('start')
         this.end = document.getElementById('end')
         this.pictures = document.getElementById('pictures')
+        this.submitButton = document.getElementById('submit')
     }
 
     /**
@@ -39,10 +40,31 @@ class Home {
         // Get random index
         const random = Math.floor(Math.random() * this.capitals.length);
         const capitalName = this.capitals[random]
-        this.capital.innerHTML = capitalName
+        this.location.innerHTML = capitalName
         fetchImages(capitalName)
         .then((data) => {
             this.addImages(data.hits)
+        })
+    }
+
+    getLocations() {
+        fetchLocations(this.city)
+        .then((data) => {
+            console.log(data)
+        })
+    }
+
+    getLocationForcast() {
+        fetchForcast(this.city)
+        .then((data) => {
+            console.log(data)
+        })
+    }
+    
+    getLocationImages() {
+        fetchImages(city)
+        .then((data) => {
+            getLocationForcast(city)
         })
     }
 
@@ -53,6 +75,16 @@ class Home {
         if(this.city && this.start && this.end) return true
         return false
     } 
+
+    /**
+     * Search for location of your trip
+     * Get images of location and
+     * If the trip is within a week, 
+     * you will get the current weather forecast
+     */
+    search() {
+        this.getLocationForcast()
+    }
 }
 
 export { Home }

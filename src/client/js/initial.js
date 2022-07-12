@@ -1,8 +1,9 @@
-import { Home } from "./home"
+import { handleSubmit, home } from "./formHandler"
 
 const start = () => {
-    const home = new Home()
     home.initializePage()
+    const submitButton = document.getElementById('submit')
+    submitButton.addEventListener('click', handleSubmit) 
 }
 
 export { start }
