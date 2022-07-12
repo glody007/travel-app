@@ -190,13 +190,19 @@ class Home {
      * you will get the current weather forecast
      */
     search = () => {
+        // Test if all fields are filled and if date range is valide
         if(this.areAllFieldsFilled() && this.isStartDateInTheFutureAndBeforeEndDate()) {
+            /**
+             * Clear Images and Forecasts
+             * set Location name then getLocations
+             */
             this.setLocationName(this.city.value)
             this.setTripLenght()
             this.removeImages()
             this.removeForcasts()
             this.getLocations()
             .then((location) => {
+                // If location is valide get forecasts else show error
                 if(location.totalResultsCount > 0) {
                     this.country = location.geonames[0].countryName
                     this.getLocationForcast()
@@ -207,6 +213,7 @@ class Home {
                 }
             })
             .then((isLocation) => {
+                // If location is valide get images
                 if(isLocation) {
                     this.getLocationImages()
                 }
