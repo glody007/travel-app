@@ -36,6 +36,8 @@ Clone the project: git clone https://github.com/glody007/travel-app.git
 
 Enter in the project folder: cd evaluate-news-nlp
 
+**Set environment variables. See .env.exemple file for reference**
+
 Install dependencies: npm Install
 
 To test: npm run test
